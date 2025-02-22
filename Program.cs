@@ -20,7 +20,7 @@ class Program
             { $"entry.{entryDigits}", voteName}
         };
 
-        //Try to get amount from user, otherwise set to default (10)
+        //Try to get amount from user, otherwise set to default (20)
         int voteAmount = (args.Length > 0 && int.TryParse(args[0], out int result)) ? result : 20;
 
         await VoteSong(formData, voteAmount);
