@@ -1,0 +1,54 @@
+﻿using System;
+using System.Text.Json;
+using static System.Net.WebRequestMethods;
+
+class Program
+{
+    //Url of the target form
+    private static readonly string url = @"https://docs.google.com/forms/d/e/1FAIpQLSdWKpSYy9mlYdMKLA0UAVaLpTYBwfpJQRNqCIeGkNypZ1RmNQ/formResponse?usp=dialog";
+
+    //Can be found by checking Network traffic after submitting form
+    private static readonly string entryDigits = "1651522106";
+    private static readonly string voteName = "Song 1";
+
+    private static readonly float delayTime = 0.5f;
+
+    public static async Task Main(string[] args)
+    {
+        var formData = new Dictionary<string, string>
+        {
+            { $"entry.{entryDigits}", voteName}
+        };
+
+        //Try to get amount from user, otherwise set to default (10)
+        int voteAmount = (args.Length > 0 && int.TryParse(args[0], out int result)) ? result : 20;
+
+        await VoteSong(formData, voteAmount);
+    }
+
+    private static async Task VoteSong(Dictionary<string, string> formData, int timesToRepeat)
+    {
+        if (timesToRepeat == 0)
+            return;
+
+        using (HttpClient client = new())
+        {
+            HttpContent data = new FormUrlEncodedContent(formData);
+
+            try
+            {
+                HttpResponseMessage response = await client.PostAsync(url, data);
+                response.EnsureSuccessStatusCode();
+            } catch (HttpRequestException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+            }
+        }
+
+        //Convert to milliseconds
+        await Task.Delay((int)(delayTime * 1000));
+
+        //Recursively call after delay
+        await VoteSong(formData, timesToRepeat - 1);
+    }
+}
