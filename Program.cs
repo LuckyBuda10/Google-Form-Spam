@@ -5,11 +5,11 @@ using static System.Net.WebRequestMethods;
 class Program
 {
     //Url of the target form
-    private static readonly string url = @"https://docs.google.com/forms/d/e/1FAIpQLSdWKpSYy9mlYdMKLA0UAVaLpTYBwfpJQRNqCIeGkNypZ1RmNQ/formResponse?usp=dialog";
+    private static readonly string url = "(url here)";
 
     //Can be found by checking Network traffic after submitting form
-    private static readonly string entryDigits = "1651522106";
-    private static readonly string voteName = "Song 1";
+    private static readonly string entryDigits = "xxxxxxxxxxxx";
+    private static readonly string voteName = "(option you want to vote for)";
 
     private static readonly float delayTime = 0.5f;
 
