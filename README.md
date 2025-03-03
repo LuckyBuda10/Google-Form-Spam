@@ -3,6 +3,7 @@
 Originally made for a spanish song bracket: Locura De Marzo
 
 Can be utilized to spam votes onto google forms containing 1 multiple choice question
+Form must allow anonymous voting, does not work if form requires google sign-in
 
 How to use:
 - Change url
