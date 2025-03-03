@@ -4,7 +4,7 @@ using static System.Net.WebRequestMethods;
 
 class Program
 {
-    //Url of the target form
+    //Url of the target form (change end to "formResponse" instead of "viewForm"
     private static readonly string url = "(url here)";
 
     //Can be found by checking Network traffic after submitting form
@@ -12,6 +12,7 @@ class Program
     private static readonly string voteName = "(option you want to vote for)";
 
     private static readonly float delayTime = 0.5f;
+    private static int numOfVotes;
 
     public static async Task Main(string[] args)
     {
@@ -22,6 +23,7 @@ class Program
 
         //Try to get amount from user, otherwise set to default (20)
         int voteAmount = (args.Length > 0 && int.TryParse(args[0], out int result)) ? result : 20;
+        numOfVotes = voteAmount;
 
         await VoteSong(formData, voteAmount);
     }
@@ -29,7 +31,10 @@ class Program
     private static async Task VoteSong(Dictionary<string, string> formData, int timesToRepeat)
     {
         if (timesToRepeat == 0)
+        {
+            Console.WriteLine($"Sent {numOfVotes} votes.");
             return;
+        }
 
         using (HttpClient client = new())
         {
