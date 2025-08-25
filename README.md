@@ -1,10 +1,10 @@
-# LocuraDeMarzoRigging
+# LocuraDeMarzoAutomator
 
 Originally made for a spanish song bracket: Locura De Marzo
 &nbsp;
-Can be utilized to spam votes onto google forms containing 1 multiple choice question.
+Can be utilized to automate votes onto google forms containing 1 multiple choice question.
 &nbsp;
-Form must allow anonymous voting, does not work if form requires google sign-in
+Form must allow anonymous voting, as it does not work if form requires google sign-in
 &nbsp;
 How to use:
 - Change url
